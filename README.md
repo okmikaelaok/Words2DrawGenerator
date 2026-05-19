@@ -1,6 +1,6 @@
 ﻿# Words2DrawGenerator
 
-<img width="2560" height="1440" alt="W2DG001" src="https://github.com/user-attachments/assets/280bf4a9-fe5b-45cc-b251-b06cdfbb2140" />
+<img width="2560" height="1440" alt="W2DG001" src="https://github.com/user-attachments/assets/7ff14bc0-1d8b-48b7-adac-9f8c6ac6a154" />
 
 ----
 
@@ -27,7 +27,7 @@ This repository contains a one-page web app for generating drawing prompt words.
 
 ## User settings and API key storage
 
-<img width="2560" height="1440" alt="W2DG002" src="https://github.com/user-attachments/assets/9602c7e8-b6fa-4ec8-8776-57ceba7db256" />
+<img width="2560" height="1440" alt="W2DG002" src="https://github.com/user-attachments/assets/ae025f6c-cb16-4f9f-a527-588373cf11c7" />
 
 API key settings are stored locally in AppData through the Node server, not in browser localStorage. The browser can see whether a key exists, but it does not receive the saved key after it is stored.
 
@@ -90,4 +90,4 @@ If the server is running in the terminal, press:
 Ctrl + C
 ```
 
-<img width="914" height="313" alt="terminalW2DG" src="https://github.com/user-attachments/assets/b6d93731-d23f-4077-a5d6-377117b0c486" />
+<img width="914" height="313" alt="terminalW2DG" src="https://github.com/user-attachments/assets/c1e349cc-6346-40fa-832a-5eedc17e72fc" />
