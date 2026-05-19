@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Words2DrawGenerator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="app-shell">
+    <section class="topbar" aria-labelledby="app-title">
+      <div>
+        <p class="eyebrow">A word generator to help users create drawing compositions</p>
+        <h1 id="app-title">Words2Draw<span>Generator</span></h1>
+      </div>
+      <button class="settings-button" id="openSettings" type="button" aria-label="Open settings">
+        <span aria-hidden="true">&#9881;&#65039;</span>
+      </button>
+    </section>
+
+    <section class="controls" aria-label="Generator controls">
+      <div class="difficulty-control dropdown" id="difficultyDropdown">
+        <button class="dropdown-button" id="difficultyButton" type="button" aria-haspopup="listbox"
+          aria-expanded="false">
+          <span class="dropdown-label">Difficulty</span>
+          <span class="dropdown-value" id="difficultyValue">Easy</span>
+        </button>
+        <div class="dropdown-content" role="listbox" aria-label="Difficulty options">
+          <button class="difficulty-option is-selected" type="button" data-difficulty="easy" role="option"
+            aria-selected="true">Easy</button>
+          <button class="difficulty-option" type="button" data-difficulty="medium" role="option"
+            aria-selected="false">Medium</button>
+          <button class="difficulty-option" type="button" data-difficulty="hard" role="option"
+            aria-selected="false">Hard</button>
+        </div>
+      </div>
+      <button class="primary-action" id="generateWords" type="button">Generate Words</button>
+      <button class="danger-action" id="resetCards" type="button">Reset Cards</button>
+      <div class="bulk-control dropdown" id="bulkActionsDropdown">
+        <button class="dropdown-button bulk-button" id="bulkActionsButton" type="button" aria-haspopup="menu"
+          aria-expanded="false">
+          <span class="dropdown-label">Card Actions</span>
+          <span class="dropdown-value">Select</span>
+        </button>
+        <div class="dropdown-content" role="menu" aria-label="Card actions">
+          <button class="bulk-option" type="button" data-action="enable-all" role="menuitem">Enable All</button>
+          <button class="bulk-option" type="button" data-action="disable-all" role="menuitem">Disable All</button>
+          <button class="bulk-option" type="button" data-action="lock-all" role="menuitem">Lock All</button>
+          <button class="bulk-option" type="button" data-action="unlock-all" role="menuitem">Unlock All</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="status-line" aria-live="polite" id="statusLine">
+      Ready to generate some words! Select a difficulty and click "Generate Words" to get started.
+    </div>
+
+    <div class="mode-line" aria-live="polite" id="modeLine">
+      <p class="mode-message mode-message-checking">Checking generation mode...</p>
+      <p class="mode-message mode-message-gpt">Current generation mode: GPT-5.4 Mini via saved local OpenAI API key in
+        settings.</p>
+      <p class="mode-message mode-message-local">Current generation mode: built-in word lists. Add an OpenAI API key in
+        Settings to use GPT-5.4 Mini for more words and dynamic generation.</p>
+    </div>
+
+    <section class="word-grid" id="wordGrid" aria-label="Random word cards">
+      <article class="word-card" data-id="time">
+        <div class="card-head">
+          <h2 class="category-title">Time &#9200;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="mood">
+        <div class="card-head">
+          <h2 class="category-title">Mood &#128514;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="action">
+        <div class="card-head">
+          <h2 class="category-title">Action &#129336;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="adjective">
+        <div class="card-head">
+          <h2 class="category-title">Adjective &#127991;&#65039;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="object">
+        <div class="card-head">
+          <h2 class="category-title">Object &#129519;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+      <article class="word-card" data-id="place">
+        <div class="card-head">
+          <h2 class="category-title">Place &#127968;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="animal">
+        <div class="card-head">
+          <h2 class="category-title">Animal &#128008;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="word-card" data-id="person">
+        <div class="card-head">
+          <h2 class="category-title">Person &#128587;</h2>
+          <label class="toggle">
+            <input type="checkbox" class="enable-toggle" checked>
+            <span class="toggle-label">Enabled</span>
+          </label>
+        </div>
+        <div class="word">Ready</div>
+        <div class="card-actions">
+          <div class="card-tools">
+            <button class="card-tool lock-toggle" type="button" title="Lock word"
+              aria-label="Lock word">&#128275;</button>
+            <button class="card-tool reroll-card" type="button" title="Reroll this card"
+              aria-label="Reroll this card">&#128260;</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <dialog class="settings-dialog" id="settingsDialog">
+    <form method="dialog" class="settings-panel">
+      <div class="settings-heading">
+        <div>
+          <p class="eyebrow">Word2DrawGenerator / UserSettings</p>
+          <h2>LLM Settings</h2>
+        </div>
+        <button class="icon-button" id="closeSettings" value="close" aria-label="Close settings"
+          type="submit">&times;</button>
+      </div>
+
+      <label class="field">
+        <span>OpenAI API key</span>
+        <input id="apiKeyInput" type="password" autocomplete="off" placeholder="sk-...">
+        <span class="field-status" id="apiKeyStatus">Checking UserSettings...</span>
+      </label>
+
+      <label class="field">
+        <span>Model</span>
+        <input id="modelInput" type="text" autocomplete="off" value="gpt-5.4-mini">
+      </label>
+
+      <label class="field">
+        <span>Creative direction</span>
+        <textarea id="directionInput" rows="3" placeholder="Optional style, mood, or theme"></textarea>
+      </label>
+
+      <p class="settings-note">
+        The API key will be saved by the local server in AppData under Words2DrawGenerator / UserSettings. The browser
+        does not
+        receive the saved key after it is stored.
+      </p>
+
+      <p class="settings-confirmation" id="settingsConfirmation" aria-live="polite"></p>
+
+      <div class="settings-actions">
+        <button class="danger-action" id="clearSettings" type="button">Clear and Remove Settings</button>
+        <button class="primary-action" id="saveSettings" type="button">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

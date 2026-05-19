@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Logs and runtime output
+*.log
+Words2DrawGenerator/server.out.log
+Words2DrawGenerator/server.err.log
+
+# Local settings and secrets
+settings.json
+*.env
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
